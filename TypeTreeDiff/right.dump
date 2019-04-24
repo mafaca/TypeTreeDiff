@@ -71,7 +71,7 @@ SpriteRenderer Base // ByteSize{ffffffff}, Index{0}, IsArray{0}, MetaFlag{8000}
 	PPtr<GameObject> m_LightProbeVolumeOverride // ByteSize{c}, Index{20}, IsArray{0}, MetaFlag{0}
 		int m_FileID // ByteSize{4}, Index{21}, IsArray{0}, MetaFlag{1}
 		SInt64 m_PathID // ByteSize{8}, Index{22}, IsArray{0}, MetaFlag{1}
-	pair m_ScaleInLightmap // ByteSize{c}, Index{23}, IsArray{0}, MetaFlag{0}
+	mypair m_ScaleInLightmap // ByteSize{c}, Index{23}, IsArray{0}, MetaFlag{0}
 		float m_ScaleInLightmap1 // ByteSize{4}, Index{23}, IsArray{0}, MetaFlag{800001}
 		float m_ScaleInLightmap2 // ByteSize{4}, Index{23}, IsArray{0}, MetaFlag{800001}
 	bool m_PreserveUVs // ByteSize{1}, Index{24}, IsArray{0}, MetaFlag{800001}

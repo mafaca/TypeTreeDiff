@@ -15,6 +15,18 @@ namespace TypeTreeDiff
 			return typeTree;
 		}
 
+		public override TreeNodeDump Optimize()
+		{
+			TreeDump tree = new TreeDump();
+			Optimize(tree);
+			tree.ClassID = ClassID;
+			tree.ClassName = ClassName;
+			tree.Inheritance = Inheritance;
+			tree.IsValid = IsValid;
+			tree.IsAbstract = IsAbstract;
+			return tree;
+		}
+
 		public override string ToString()
 		{
 			if (ClassName == null)

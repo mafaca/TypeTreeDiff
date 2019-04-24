@@ -103,7 +103,7 @@ namespace TypeTreeDiff
 				return;
 			}
 
-			DBDiff diff = new DBDiff(LeftDump.Dump, RightDump.Dump);
+			DBDiff diff = new DBDiff(LeftDump.DumpOptimized, RightDump.DumpOptimized);
 			Dispatcher.InvokeAsync(() =>
 			{
 				LeftDump.FillLeftDump(diff);

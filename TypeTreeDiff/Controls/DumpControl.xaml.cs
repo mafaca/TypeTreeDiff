@@ -62,6 +62,7 @@ namespace TypeTreeDiff
 
 		public Position DiffPosition { get; set; }
 		public DBDump Dump { get; private set; }
+		public DBDump DumpOptimized { get; private set; }
 		public DBDiff Diff { get; private set; }
 
 		private bool IsTypeTreeView => TypeTreeArea.Visibility == Visibility.Visible;
@@ -227,6 +228,7 @@ namespace TypeTreeDiff
 		{
 			string filePath = (string)state;
 			Dump = DBDump.Read(filePath);
+			DumpOptimized = Dump.Optimize();
 			Dispatcher.Invoke(() =>
 			{
 				VersionLabel.Content = Dump.Version.ToString();
@@ -308,7 +310,6 @@ namespace TypeTreeDiff
 			{
 				return string.Empty;
 			}
-
 
 			// header
 			StringBuilder sb = new StringBuilder();

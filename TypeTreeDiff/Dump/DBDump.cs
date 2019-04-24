@@ -39,6 +39,20 @@ namespace TypeTreeDiff
 			return dump;
 		}
 
+		public DBDump Optimize()
+		{
+			DBDump db = new DBDump();
+			db.Version = Version;
+			db.Type = Type;
+			TreeDump[] typeTrees = new TreeDump[TypeTrees.Count];
+			for (int i = 0; i < TypeTrees.Count; i++)
+			{
+				typeTrees[i] = (TreeDump)TypeTrees[i].Optimize();
+			}
+			db.TypeTrees = typeTrees;
+			return db;
+		}
+
 		private void ReadInner(DumpReader reader)
 		{
 			Version = ReadVersion(reader);
