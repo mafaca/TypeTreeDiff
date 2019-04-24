@@ -1,4 +1,8 @@
-﻿using System.ComponentModel;
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.IO;
+using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
@@ -41,7 +45,39 @@ namespace TypeTreeDiff
 			RightDump.EventTypeTreeSelectionChanged += (index) => OnTypeTreeSelectionChanged(LeftDump, index);
 			LeftDump.EventTypeTreeScrollChanged += (offset) => OnTypeTreeScrollChanged(RightDump, offset);
 			RightDump.EventTypeTreeScrollChanged += (offset) => OnTypeTreeScrollChanged(LeftDump, offset);
-			
+
+			string[] args = Environment.GetCommandLineArgs();
+			ProcessArguments(args);
+		}
+
+		private void ProcessArguments(string[] args)
+		{
+			if (args.Length < 2)
+			{
+				return;
+			}
+
+			string leftFile = args[1];
+			if (!File.Exists(leftFile))
+			{
+				MessageBox.Show($"File '{leftFile}' doesn't exists");
+				return;
+			}
+
+			LeftDump.ProcessDumpFile(leftFile);
+			if (args.Length == 2)
+			{
+				return;
+			}
+
+			string rightFile = args[2];
+			if (!File.Exists(rightFile))
+			{
+				MessageBox.Show($"File '{rightFile}' doesn't exists");
+				return;
+			}
+
+			RightDump.ProcessDumpFile(rightFile);
 		}
 
 		// =================================
@@ -65,11 +101,18 @@ namespace TypeTreeDiff
 				return;
 			}
 
-			DumpDiff diff = new DumpDiff(LeftDump.Dump, RightDump.Dump);
+			DBDiff diff = new DBDiff(LeftDump.Dump, RightDump.Dump);
 			Dispatcher.InvokeAsync(() =>
 			{
 				LeftDump.FillLeftDump(diff);
 				RightDump.FillRightDump(diff);
+
+				Color foreColor = diff.LeftVersion <= diff.RightVersion ? Colors.Black : Colors.White;
+				Color backColor = diff.LeftVersion <= diff.RightVersion ? Colors.Transparent : Colors.Red;
+				LeftDump.VersionLabel.Foreground = new SolidColorBrush(foreColor);
+				LeftDump.VersionLabel.Background = new SolidColorBrush(backColor);
+				RightDump.VersionLabel.Foreground = new SolidColorBrush(foreColor);
+				RightDump.VersionLabel.Background = new SolidColorBrush(backColor);
 			});
 		}
 
@@ -95,8 +138,8 @@ namespace TypeTreeDiff
 
 		private void OnDumpTypeTreeSelected(int classID)
 		{
-			LeftDump.FillTypeTree(classID);
-			RightDump.FillTypeTree(classID);
+			LeftDump.ShowTypeTreeView(classID);
+			RightDump.ShowTypeTreeView(classID);
 		}
 		
 		private void OnDumpHeaderSizeChanged(DumpControl dest, DumpControl source)
@@ -114,10 +157,8 @@ namespace TypeTreeDiff
 
 		private void OnTypeTreeBackClicked()
 		{
-			LeftDump.DumpListView.Visibility = Visibility.Visible;
-			LeftDump.TypeTreeArea.Visibility = Visibility.Hidden;
-			RightDump.DumpListView.Visibility = Visibility.Visible;
-			RightDump.TypeTreeArea.Visibility = Visibility.Hidden;
+			LeftDump.ShowDumpView();
+			RightDump.ShowDumpView();
 		}
 
 		private void OnTypeTreeSelectionChanged(DumpControl dump, int index)

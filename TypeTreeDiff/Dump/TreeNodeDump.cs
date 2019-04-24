@@ -4,10 +4,20 @@ using System.Globalization;
 
 namespace TypeTreeDiff
 {
-	public class TypeTreeNodeDump
+	public class TreeNodeDump
 	{
-		protected TypeTreeNodeDump()
+		protected TreeNodeDump()
 		{
+		}
+
+		public int GetNodeCount()
+		{
+			int count = 1;
+			foreach (TreeNodeDump child in Children)
+			{
+				count += child.GetNodeCount();
+			}
+			return count;
 		}
 
 		public override string ToString()
@@ -80,10 +90,10 @@ namespace TypeTreeDiff
 			reader.FindNextLine();
 
 			int childIndent = indent + 1;
-			List<TypeTreeNodeDump> children = new List<TypeTreeNodeDump>();
+			List<TreeNodeDump> children = new List<TreeNodeDump>();
 			while (reader.PeekIndend() == childIndent)
 			{
-				TypeTreeNodeDump child = new TypeTreeNodeDump();
+				TreeNodeDump child = new TreeNodeDump();
 				child.ReadTypeTreeNode(reader, childIndent);
 				children.Add(child);
 			}
@@ -120,6 +130,7 @@ namespace TypeTreeDiff
 		public int Index { get; private set; }
 		public bool IsArray { get; private set; }
 		public uint MetaFlag { get; private set; }
-		public IReadOnlyList<TypeTreeNodeDump> Children { get; private set; }
+		public bool IsAlign => (MetaFlag & 0x4000) != 0;
+		public IReadOnlyList<TreeNodeDump> Children { get; private set; }
 	}
 }

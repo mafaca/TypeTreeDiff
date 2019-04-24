@@ -71,7 +71,9 @@ SpriteRenderer Base // ByteSize{ffffffff}, Index{0}, IsArray{0}, MetaFlag{8000}
 	float m_ScaleInLightmap // ByteSize{4}, Index{20}, IsArray{0}, MetaFlag{800001}
 	bool m_PreserveUVs // ByteSize{1}, Index{21}, IsArray{0}, MetaFlag{800001}
 	bool m_ImportantGI // ByteSize{1}, Index{22}, IsArray{0}, MetaFlag{804001}
-	float m_AutoUVMaxDistance // ByteSize{4}, Index{23}, IsArray{0}, MetaFlag{800001}
+	pair m_AutoUVMaxDistance // ByteSize{4}, Index{23}, IsArray{0}, MetaFlag{800001}
+		float m_AutoUVMaxDistance1 // ByteSize{4}, Index{23}, IsArray{0}, MetaFlag{800001}
+		float m_AutoUVMaxDistance2 // ByteSize{4}, Index{23}, IsArray{0}, MetaFlag{800001}
 	float m_AutoUVMaxAngle // ByteSize{4}, Index{24}, IsArray{0}, MetaFlag{800001}
 	PPtr<LightmapParameters> m_LightmapParameters // ByteSize{c}, Index{25}, IsArray{0}, MetaFlag{804000}
 		int m_FileID // ByteSize{4}, Index{26}, IsArray{0}, MetaFlag{800001}

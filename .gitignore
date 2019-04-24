@@ -1,5 +1,4 @@
 **/.vs/
-**/*.csproj.user
 packages/
 **/packages.config
 

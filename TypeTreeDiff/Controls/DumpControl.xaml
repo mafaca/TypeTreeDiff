@@ -8,8 +8,8 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="400">
 
-	<Grid>		
-		<Grid AllowDrop="False" Background="White">
+	<Grid>
+		<Grid AllowDrop="True" Background="White">
 			<Grid.RowDefinitions>
 				<RowDefinition Height="*"/>
 				<RowDefinition Height="auto"/>
@@ -45,6 +45,11 @@
 				<ListBox Name="TypeTreeListBox" Grid.Row="1" SelectionMode="Single"
 						 SelectionChanged="OnTypeTreeSelectionChanged"
 						 ScrollViewer.ScrollChanged="OnTypeTreeScrollChanged">
+					<ListBox.Resources>
+						<Style TargetType="ListBoxItem">
+							<EventSetter Event="MouseDoubleClick" Handler="OnTypeTreeNodeDoubleClicked" />
+						</Style>
+					</ListBox.Resources>
 					<!--<ListBoxItem Content="Max"/>
 					<ListBoxItem Content="Sam"/>
 					<ListBoxItem Content="Minda"/>-->
@@ -52,10 +57,28 @@
 			</Grid>
 
 			<StackPanel Orientation="Vertical" Background="#FFDCD7D7" Grid.Row="1">
-				<StackPanel Orientation="Horizontal" Margin="0,0,0,-5">
-					<Label Content="Version:" FontSize="12" />
-					<Label Name="VersionLabel" FontSize="12" Content="1.0.0f1" />
-				</StackPanel>
+				<Grid Margin="0,0,0,-5">
+					<Grid.ColumnDefinitions>
+						<ColumnDefinition Width="auto"/>
+						<ColumnDefinition Width="auto"/>
+						<ColumnDefinition Width="*"/>
+						<ColumnDefinition Width="auto"/>
+					</Grid.ColumnDefinitions>
+
+					<StackPanel Grid.Column="0" Orientation="Horizontal" >
+						<Label Content="Version:" FontSize="12" />
+						<Label Name="VersionLabel" FontSize="12" Content="1.0.0f1" />
+					</StackPanel>
+
+					<StackPanel Grid.Column="1" Orientation="Horizontal" Margin="10,0,0,0">
+						<Label Content="Type:" FontSize="12" />
+						<Label Name="TypeLabel" FontSize="12" Content="editor" />
+					</StackPanel>
+
+					<Button Name="CopyContentButton" Grid.Column="3" Margin="0,2,5,2" Content="Copy enum" Width="80" Background="#FF898989"
+							Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}"
+							Click="OnCopyContentButtonClicked"/>
+				</Grid>
 
 				<StackPanel Orientation="Horizontal" Margin="0,-5,0,0">
 					<StackPanel Orientation="Horizontal">
@@ -64,7 +87,7 @@
 					</StackPanel>
 
 					<StackPanel Name="ChangedStack" Orientation="Horizontal" Margin="10,0,0,0" >
-						<Label Content="Changed:" FontSize="12" Foreground="Blue"/>
+						<Label Content="Changed:" FontSize="12" Foreground="DarkSlateGray"/>
 						<Label Name="ChangedLabel" FontSize="12" Content="10" />
 					</StackPanel>
 

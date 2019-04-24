@@ -5,13 +5,13 @@ using System.Linq;
 
 namespace TypeTreeDiff
 {
-	public sealed class Dump
+	public sealed class DBDump
 	{
-		private Dump()
+		private DBDump()
 		{
 		}
 
-		public static Dump Read(string filePath)
+		public static DBDump Read(string filePath)
 		{
 			if (!File.Exists(filePath))
 			{
@@ -25,9 +25,9 @@ namespace TypeTreeDiff
 			}
 		}
 
-		public static Dump Read(Stream stream)
+		public static DBDump Read(Stream stream)
 		{
-			Dump dump = new Dump();
+			DBDump dump = new DBDump();
 			using (DumpReader reader = new DumpReader(stream))
 			{
 				System.Diagnostics.Stopwatch watch = new System.Diagnostics.Stopwatch();
@@ -44,10 +44,10 @@ namespace TypeTreeDiff
 			Version = ReadVersion(reader);
 			Type = ReadType(reader);
 
-			List<TypeTreeDump> trees = new List<TypeTreeDump>();
+			List<TreeDump> trees = new List<TreeDump>();
 			while (!ReadValidation(reader, trees))
 			{
-				TypeTreeDump tree = TypeTreeDump.Read(reader);
+				TreeDump tree = TreeDump.Read(reader);
 				trees.Add(tree);
 			}
 			TypeTrees = trees.ToArray();
@@ -79,7 +79,7 @@ namespace TypeTreeDiff
 			return type;
 		}
 
-		private bool ReadValidation(DumpReader reader, IReadOnlyList<TypeTreeDump> trees)
+		private bool ReadValidation(DumpReader reader, IReadOnlyList<TreeDump> trees)
 		{
 			reader.FindContent();
 
@@ -131,6 +131,6 @@ namespace TypeTreeDiff
 
 		public Version Version { get; private set; }
 		public string Type { get; private set; }
-		public IReadOnlyList<TypeTreeDump> TypeTrees { get; private set; }
+		public IReadOnlyList<TreeDump> TypeTrees { get; private set; }
 	}
 }

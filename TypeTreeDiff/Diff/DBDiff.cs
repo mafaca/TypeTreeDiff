@@ -3,9 +3,9 @@ using System.Collections.Generic;
 
 namespace TypeTreeDiff
 {
-	public sealed class DumpDiff
+	public sealed class DBDiff
 	{
-		public DumpDiff(Dump left, Dump right)
+		public DBDiff(DBDump left, DBDump right)
 		{
 			if (left == null)
 			{
@@ -18,21 +18,17 @@ namespace TypeTreeDiff
 
 			LeftVersion = left.Version;
 			RightVersion = right.Version;
-			if (LeftVersion >= RightVersion)
-			{
-				throw new ArgumentException($"Left version {LeftVersion} should be less than right {RightVersion}");
-			}
 
-			Dictionary<int, TypeTreeDump> rightTrees = new Dictionary<int, TypeTreeDump>(right.TypeTrees.Count);
-			foreach (TypeTreeDump rightTree in right.TypeTrees)
+			Dictionary<int, TreeDump> rightTrees = new Dictionary<int, TreeDump>(right.TypeTrees.Count);
+			foreach (TreeDump rightTree in right.TypeTrees)
 			{
 				rightTrees.Add(rightTree.ClassID, rightTree);
 			}
 
 			List<TreeDiff> treeDiffs = new List<TreeDiff>();
-			foreach (TypeTreeDump leftTree in left.TypeTrees)
+			foreach (TreeDump leftTree in left.TypeTrees)
 			{
-				if (rightTrees.TryGetValue(leftTree.ClassID, out TypeTreeDump rightTree))
+				if (rightTrees.TryGetValue(leftTree.ClassID, out TreeDump rightTree))
 				{
 					TreeDiff treeDiff = new TreeDiff(leftTree, rightTree);
 					treeDiffs.Add(treeDiff);
@@ -44,7 +40,8 @@ namespace TypeTreeDiff
 					treeDiffs.Add(tree);
 				}
 			}
-			foreach (TypeTreeDump rightTree in rightTrees.Values)
+#warning TODO: combine
+			foreach (TreeDump rightTree in rightTrees.Values)
 			{
 				TreeDiff tree = new TreeDiff(rightTree, DiffStatus.Added);
 				treeDiffs.Add(tree);

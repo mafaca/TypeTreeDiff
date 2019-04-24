@@ -63,11 +63,11 @@
       <DependentUpon>DumpControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Diff\DiffStatus.cs" />
-    <Compile Include="Diff\DumpDiff.cs" />
+    <Compile Include="Diff\DBDiff.cs" />
     <Compile Include="Diff\TreeDiff.cs" />
     <Compile Include="Diff\TreeNodeDiff.cs" />
-    <Compile Include="Dump\TypeTreeDump.cs" />
-    <Compile Include="Dump\TypeTreeNodeDump.cs" />
+    <Compile Include="Dump\TreeDump.cs" />
+    <Compile Include="Dump\TreeNodeDump.cs" />
     <Compile Include="Utils\Version\Version.cs" />
     <Compile Include="Utils\Version\VersionType.cs" />
     <Page Include="Controls\DropArea.xaml">
@@ -86,7 +86,7 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Dump\Dump.cs" />
+    <Compile Include="Dump\DBDump.cs" />
     <Compile Include="IO\DumpReader.cs" />
     <Compile Include="IO\WordReader.cs" />
     <Compile Include="MainWindow.xaml.cs">
@@ -112,12 +112,14 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <None Include="left.dump">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <None Include="left.dump">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="right.dump">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

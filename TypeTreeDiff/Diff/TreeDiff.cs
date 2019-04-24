@@ -4,7 +4,7 @@ namespace TypeTreeDiff
 {
 	public sealed class TreeDiff
 	{
-		public TreeDiff(TypeTreeDump tree, DiffStatus status)
+		public TreeDiff(TreeDump tree, DiffStatus status)
 		{
 			if (tree == null)
 			{
@@ -18,7 +18,7 @@ namespace TypeTreeDiff
 			Status = status;
 		}
 
-		public TreeDiff(TypeTreeDump left, TypeTreeDump right)
+		public TreeDiff(TreeDump left, TreeDump right)
 		{
 			if (left == null)
 			{
@@ -54,6 +54,11 @@ namespace TypeTreeDiff
 			{
 				Status = DiffStatus.Invalid;
 			}
+		}
+
+		public override string ToString()
+		{
+			return $"{ClassID} {RightClassName} : {RightBaseName}";
 		}
 
 		public int ClassID { get; }

@@ -10,9 +10,9 @@ namespace TypeTreeDiff
 		public event Action<string> EventFileDropped;
 
 		public static readonly DependencyProperty ActiveDropColorProperty =
-			DependencyProperty.Register(nameof(ActiveDropColor), typeof(Color), typeof(DumpControl));
+			DependencyProperty.Register(nameof(ActiveDropColor), typeof(Color), typeof(DropArea));
 		public static readonly DependencyProperty InactiveDropColorProperty =
-			DependencyProperty.Register(nameof(InactiveDropColor), typeof(Color), typeof(DumpControl));
+			DependencyProperty.Register(nameof(InactiveDropColor), typeof(Color), typeof(DropArea));
 
 		public Color ActiveDropColor
 		{

@@ -2,15 +2,15 @@
 
 namespace TypeTreeDiff
 {
-	public sealed class TypeTreeDump : TypeTreeNodeDump
+	public sealed class TreeDump : TreeNodeDump
 	{
-		private TypeTreeDump()
+		private TreeDump()
 		{
 		}
 
-		internal static TypeTreeDump Read(DumpReader reader)
+		internal static TreeDump Read(DumpReader reader)
 		{
-			TypeTreeDump typeTree = new TypeTreeDump();
+			TreeDump typeTree = new TreeDump();
 			typeTree.ReadTypeTree(reader);
 			return typeTree;
 		}
