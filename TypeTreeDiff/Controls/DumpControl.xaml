@@ -1,0 +1,87 @@
+﻿<UserControl x:Class="TypeTreeDiff.DumpControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:TypeTreeDiff"
+			xmlns:control = "clr-namespace:TypeTreeDiff"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="400">
+
+	<Grid>		
+		<Grid AllowDrop="False" Background="White">
+			<Grid.RowDefinitions>
+				<RowDefinition Height="*"/>
+				<RowDefinition Height="auto"/>
+			</Grid.RowDefinitions>
+
+			<ListView Name="DumpListView" Grid.Row="0" SelectionMode="Single"
+					  SelectionChanged="OnDumpSelectionChanged"
+					  GridViewColumnHeader.Click="OnDumpHeaderClicked"
+					  ScrollViewer.ScrollChanged="OnDumpScrollChanged">
+				<ListView.Resources>
+					<Style TargetType="ListViewItem">
+						<EventSetter Event="MouseDoubleClick" Handler="OnDumpItemDoubleClicked" />
+					</Style>
+				</ListView.Resources>				
+				<ListView.View>
+					<GridView>
+						<GridViewColumn x:Name="DumpIDHeader" Header="ID" Width="80" DisplayMemberBinding="{Binding ID}" />
+						<GridViewColumn x:Name="DumpNameHeader" Header="Name" Width="300" DisplayMemberBinding="{Binding Name}" />
+					</GridView>
+				</ListView.View>
+			</ListView>
+
+			<Grid Name="TypeTreeArea" Visibility="Hidden">
+				<Grid.RowDefinitions>
+					<RowDefinition Height="auto"/>
+					<RowDefinition Height="*"/>
+				</Grid.RowDefinitions>
+
+				<Button Grid.Row="0" Content="&lt;&lt;&lt;"
+						Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}"
+						VerticalAlignment="Top" HorizontalAlignment="Stretch"
+						Click="OnTypeTreeBackClicked"/>
+				<ListBox Name="TypeTreeListBox" Grid.Row="1" SelectionMode="Single"
+						 SelectionChanged="OnTypeTreeSelectionChanged"
+						 ScrollViewer.ScrollChanged="OnTypeTreeScrollChanged">
+					<!--<ListBoxItem Content="Max"/>
+					<ListBoxItem Content="Sam"/>
+					<ListBoxItem Content="Minda"/>-->
+				</ListBox>
+			</Grid>
+
+			<StackPanel Orientation="Vertical" Background="#FFDCD7D7" Grid.Row="1">
+				<StackPanel Orientation="Horizontal" Margin="0,0,0,-5">
+					<Label Content="Version:" FontSize="12" />
+					<Label Name="VersionLabel" FontSize="12" Content="1.0.0f1" />
+				</StackPanel>
+
+				<StackPanel Orientation="Horizontal" Margin="0,-5,0,0">
+					<StackPanel Orientation="Horizontal">
+						<Label Content="Objects:" FontSize="12" />
+						<Label Name="CountLabel" FontSize="12" Content="300" />
+					</StackPanel>
+
+					<StackPanel Name="ChangedStack" Orientation="Horizontal" Margin="10,0,0,0" >
+						<Label Content="Changed:" FontSize="12" Foreground="Blue"/>
+						<Label Name="ChangedLabel" FontSize="12" Content="10" />
+					</StackPanel>
+
+					<StackPanel Name="AddedStack" Orientation="Horizontal" Margin="10,0,0,0" >
+						<Label Content="Added:" FontSize="12" Foreground="Green" />
+						<Label Name="AddedLabel" FontSize="12" Content="10" />
+					</StackPanel>
+
+					<StackPanel Name="RemovedStack" Orientation="Horizontal" Margin="10,0,0,0">
+						<Label Content="Removed:" FontSize="12" Foreground="DarkRed" />
+						<Label Name="RemovedLabel" FontSize="12" Content="10" />
+					</StackPanel>
+				</StackPanel>
+			</StackPanel>
+		</Grid>
+
+		<control:DropArea x:Name="DropArea" ActiveDropColor="Gainsboro" InactiveDropColor="#FFBDBCBC"/>
+	</Grid>
+	
+</UserControl>

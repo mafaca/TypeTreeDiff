@@ -1,0 +1,8 @@
+**/.vs/
+**/*.csproj.user
+packages/
+**/packages.config
+
+Bins/
+
+*.DotSettings.user

@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.28803.156
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TypeTreeDiff", "TypeTreeDiff\TypeTreeDiff.csproj", "{989075B3-F6C0-432F-B19B-1B249C83D0BC}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{989075B3-F6C0-432F-B19B-1B249C83D0BC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{989075B3-F6C0-432F-B19B-1B249C83D0BC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{989075B3-F6C0-432F-B19B-1B249C83D0BC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{989075B3-F6C0-432F-B19B-1B249C83D0BC}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {96E7C10D-C192-4759-8931-F825FB330502}
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,115 @@
+Version: 1.0.0f1 (player)
+
+// classID{0}: Object
+// Object is abstract
+
+// classID{1049}: AnnotationManager <- Object
+AnnotationManager Base // ByteSize{ffffffff}, Index{0}, IsArray{0}, MetaFlag{8000}
+	vector m_CurrentPreset_m_AnnotationList // ByteSize{ffffffff}, Index{1}, IsArray{0}, MetaFlag{8000}
+		Array Array // ByteSize{ffffffff}, Index{2}, IsArray{1}, MetaFlag{c000}
+			int size // ByteSize{4}, Index{3}, IsArray{0}, MetaFlag{0}
+			Annotation data // ByteSize{ffffffff}, Index{4}, IsArray{0}, MetaFlag{8000}
+				bool m_IconEnabled // ByteSize{1}, Index{5}, IsArray{0}, MetaFlag{4000}
+				bool m_GizmoEnabled // ByteSize{1}, Index{6}, IsArray{0}, MetaFlag{4000}
+				Type* m_ClassID // ByteSize{4}, Index{7}, IsArray{0}, MetaFlag{0}
+				string m_ScriptClass // ByteSize{ffffffff}, Index{8}, IsArray{0}, MetaFlag{8000}
+					Array Array // ByteSize{ffffffff}, Index{9}, IsArray{1}, MetaFlag{4001}
+						int size // ByteSize{4}, Index{a}, IsArray{0}, MetaFlag{1}
+						char data // ByteSize{1}, Index{b}, IsArray{0}, MetaFlag{1}
+				int m_Flags // ByteSize{4}, Index{c}, IsArray{0}, MetaFlag{0}
+	vector m_RecentlyChanged // ByteSize{ffffffff}, Index{d}, IsArray{0}, MetaFlag{8000}
+		Array Array // ByteSize{ffffffff}, Index{e}, IsArray{1}, MetaFlag{c000}
+			int size // ByteSize{4}, Index{f}, IsArray{0}, MetaFlag{0}
+			Annotation data // ByteSize{ffffffff}, Index{10}, IsArray{0}, MetaFlag{8000}
+				bool m_IconEnabled // ByteSize{1}, Index{11}, IsArray{0}, MetaFlag{4000}
+				bool m_GizmoEnabled // ByteSize{1}, Index{12}, IsArray{0}, MetaFlag{4000}
+				Type* m_ClassID // ByteSize{4}, Index{13}, IsArray{0}, MetaFlag{0}
+				string m_ScriptClass // ByteSize{ffffffff}, Index{14}, IsArray{0}, MetaFlag{8000}
+					Array Array // ByteSize{ffffffff}, Index{15}, IsArray{1}, MetaFlag{4001}
+						int size // ByteSize{4}, Index{16}, IsArray{0}, MetaFlag{1}
+						char data // ByteSize{1}, Index{17}, IsArray{0}, MetaFlag{1}
+				int m_Flags // ByteSize{4}, Index{18}, IsArray{0}, MetaFlag{0}
+	float m_WorldIconSize // ByteSize{4}, Index{19}, IsArray{0}, MetaFlag{0}
+	bool m_Use3dGizmos // ByteSize{1}, Index{1a}, IsArray{0}, MetaFlag{0}
+	bool m_ShowGrid // ByteSize{1}, Index{1b}, IsArray{0}, MetaFlag{0}
+	bool m_ShowSelectionOutline // ByteSize{1}, Index{1c}, IsArray{0}, MetaFlag{0}
+	bool m_ShowSelectionWire // ByteSize{1}, Index{1d}, IsArray{0}, MetaFlag{4000}
+
+// classID{212}: SpriteRenderer <- Renderer <- Component <- EditorExtension <- Object
+SpriteRenderer Base // ByteSize{ffffffff}, Index{0}, IsArray{0}, MetaFlag{8000}
+	unsigned int m_ObjectHideFlags // ByteSize{4}, Index{1}, IsArray{0}, MetaFlag{1}
+	PPtr<EditorExtension> m_PrefabParentObject // ByteSize{c}, Index{2}, IsArray{0}, MetaFlag{10001}
+		int m_FileID // ByteSize{4}, Index{3}, IsArray{0}, MetaFlag{10001}
+		SInt64 m_PathID // ByteSize{8}, Index{4}, IsArray{0}, MetaFlag{10001}
+	PPtr<Prefab> m_PrefabInternal // ByteSize{c}, Index{5}, IsArray{0}, MetaFlag{10001}
+		int m_FileID // ByteSize{4}, Index{6}, IsArray{0}, MetaFlag{10001}
+		SInt64 m_PathID // ByteSize{8}, Index{7}, IsArray{0}, MetaFlag{10001}
+	PPtr<GameObject> m_GameObject // ByteSize{c}, Index{8}, IsArray{0}, MetaFlag{10041}
+		int m_FileID // ByteSize{4}, Index{9}, IsArray{0}, MetaFlag{10041}
+		SInt64 m_PathID // ByteSize{8}, Index{a}, IsArray{0}, MetaFlag{10041}
+	bool m_Enabled // ByteSize{1}, Index{b}, IsArray{0}, MetaFlag{4001}
+	UInt8 m_CastShadows // ByteSize{1}, Index{c}, IsArray{0}, MetaFlag{0}
+	bool m_ReceiveShadows // ByteSize{1}, Index{d}, IsArray{0}, MetaFlag{4000}
+	vector m_Materials // ByteSize{ffffffff}, Index{e}, IsArray{0}, MetaFlag{0}
+		Array Array // ByteSize{ffffffff}, Index{f}, IsArray{1}, MetaFlag{0}
+			int size // ByteSize{4}, Index{10}, IsArray{0}, MetaFlag{0}
+			PPtr<Material> data // ByteSize{c}, Index{11}, IsArray{0}, MetaFlag{0}
+				int m_FileID // ByteSize{4}, Index{12}, IsArray{0}, MetaFlag{1}
+				SInt64 m_PathID // ByteSize{8}, Index{13}, IsArray{0}, MetaFlag{1}
+	vector m_SubsetIndices // ByteSize{ffffffff}, Index{14}, IsArray{0}, MetaFlag{1}
+		Array Array // ByteSize{ffffffff}, Index{15}, IsArray{1}, MetaFlag{1}
+			int size // ByteSize{4}, Index{16}, IsArray{0}, MetaFlag{1}
+			unsigned int data // ByteSize{4}, Index{17}, IsArray{0}, MetaFlag{1}
+	PPtr<Transform> m_StaticBatchRoot // ByteSize{c}, Index{18}, IsArray{0}, MetaFlag{1}
+		int m_FileID // ByteSize{4}, Index{19}, IsArray{0}, MetaFlag{1}
+		SInt64 m_PathID // ByteSize{8}, Index{1a}, IsArray{0}, MetaFlag{1}
+	bool m_UseLightProbes // ByteSize{1}, Index{1b}, IsArray{0}, MetaFlag{4000}
+	int m_ReflectionProbeUsage // ByteSize{4}, Index{1c}, IsArray{0}, MetaFlag{0}
+	PPtr<Transform> m_ProbeAnchor // ByteSize{c}, Index{1d}, IsArray{0}, MetaFlag{0}
+		int m_FileID // ByteSize{4}, Index{1e}, IsArray{0}, MetaFlag{1}
+		SInt64 m_PathID // ByteSize{8}, Index{1f}, IsArray{0}, MetaFlag{1}
+	float m_ScaleInLightmap // ByteSize{4}, Index{20}, IsArray{0}, MetaFlag{800001}
+	bool m_PreserveUVs // ByteSize{1}, Index{21}, IsArray{0}, MetaFlag{800001}
+	bool m_ImportantGI // ByteSize{1}, Index{22}, IsArray{0}, MetaFlag{804001}
+	float m_AutoUVMaxDistance // ByteSize{4}, Index{23}, IsArray{0}, MetaFlag{800001}
+	float m_AutoUVMaxAngle // ByteSize{4}, Index{24}, IsArray{0}, MetaFlag{800001}
+	PPtr<LightmapParameters> m_LightmapParameters // ByteSize{c}, Index{25}, IsArray{0}, MetaFlag{804000}
+		int m_FileID // ByteSize{4}, Index{26}, IsArray{0}, MetaFlag{800001}
+		SInt64 m_PathID // ByteSize{8}, Index{27}, IsArray{0}, MetaFlag{800001}
+	int m_SortingLayerID // ByteSize{4}, Index{28}, IsArray{0}, MetaFlag{1}
+	SInt16 m_SortingOrder // ByteSize{2}, Index{29}, IsArray{0}, MetaFlag{4001}
+	PPtr<Sprite> m_Sprite // ByteSize{c}, Index{2a}, IsArray{0}, MetaFlag{0}
+		int m_FileID // ByteSize{4}, Index{2b}, IsArray{0}, MetaFlag{1}
+		SInt64 m_PathID // ByteSize{8}, Index{2c}, IsArray{0}, MetaFlag{1}
+	ColorRGBA m_Color // ByteSize{10}, Index{2d}, IsArray{0}, MetaFlag{204000}
+		float r // ByteSize{4}, Index{2e}, IsArray{0}, MetaFlag{200001}
+		float g // ByteSize{4}, Index{2f}, IsArray{0}, MetaFlag{200001}
+		float b // ByteSize{4}, Index{30}, IsArray{0}, MetaFlag{200001}
+		float a // ByteSize{4}, Index{31}, IsArray{0}, MetaFlag{200001}
+
+// classID{1028}: AssetMetaData <- Object
+AssetMetaData Base // ByteSize{ffffffff}, Index{0}, IsArray{0}, MetaFlag{8000}
+	GUID guid // ByteSize{10}, Index{1}, IsArray{0}, MetaFlag{0}
+		unsigned int data[0] // ByteSize{4}, Index{2}, IsArray{0}, MetaFlag{0}
+		unsigned int data[1] // ByteSize{4}, Index{3}, IsArray{0}, MetaFlag{0}
+		unsigned int data[2] // ByteSize{4}, Index{4}, IsArray{0}, MetaFlag{0}
+		unsigned int data[3] // ByteSize{4}, Index{5}, IsArray{0}, MetaFlag{0}
+	string pathName // ByteSize{ffffffff}, Index{6}, IsArray{0}, MetaFlag{8000}
+		Array Array // ByteSize{ffffffff}, Index{7}, IsArray{1}, MetaFlag{4001}
+			int size // ByteSize{4}, Index{8}, IsArray{0}, MetaFlag{1}
+			char data // ByteSize{1}, Index{9}, IsArray{0}, MetaFlag{1}
+	string originalName // ByteSize{ffffffff}, Index{a}, IsArray{0}, MetaFlag{8000}
+		Array Array // ByteSize{ffffffff}, Index{b}, IsArray{1}, MetaFlag{4001}
+			int size // ByteSize{4}, Index{c}, IsArray{0}, MetaFlag{1}
+			char data // ByteSize{1}, Index{d}, IsArray{0}, MetaFlag{1}
+	vector labels // ByteSize{ffffffff}, Index{e}, IsArray{0}, MetaFlag{8000}
+		Array Array // ByteSize{ffffffff}, Index{f}, IsArray{1}, MetaFlag{c000}
+			int size // ByteSize{4}, Index{10}, IsArray{0}, MetaFlag{0}
+			string data // ByteSize{ffffffff}, Index{11}, IsArray{0}, MetaFlag{8000}
+				Array Array // ByteSize{ffffffff}, Index{12}, IsArray{1}, MetaFlag{4001}
+					int size // ByteSize{4}, Index{13}, IsArray{0}, MetaFlag{1}
+					char data // ByteSize{1}, Index{14}, IsArray{0}, MetaFlag{1}
+	UInt64 assetStoreRef // ByteSize{8}, Index{15}, IsArray{0}, MetaFlag{0}
+
+// ======================================
+// Successfully finished. Written 4 of 4
