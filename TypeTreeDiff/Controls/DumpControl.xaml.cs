@@ -141,6 +141,21 @@ namespace TypeTreeDiff
 			DumpListView.Visibility = Visibility.Hidden;
 			TypeTreeArea.Visibility = Visibility.Visible;
 			CopyContentButton.Content = "Copy struct";
+			SetTypeTreeScrollPosition(0.0);
+		}
+
+		public void SetDumpScrollPosition(double offset)
+		{
+			Decorator border = (Decorator)VisualTreeHelper.GetChild(DumpListView, 0);
+			ScrollViewer scrollViewer = (ScrollViewer)border.Child;
+			scrollViewer.ScrollToVerticalOffset(offset);
+		}
+
+		public void SetTypeTreeScrollPosition(double offset)
+		{
+			Decorator border = (Decorator)VisualTreeHelper.GetChild(TypeTreeListBox, 0);
+			ScrollViewer scrollViewer = (ScrollViewer)border.Child;
+			scrollViewer.ScrollToVerticalOffset(offset);
 		}
 
 		public void SortDumpItems(string property, ListSortDirection direction)

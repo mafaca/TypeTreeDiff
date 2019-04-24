@@ -12,7 +12,7 @@ namespace TypeTreeDiff
 		public static readonly DependencyProperty ActiveDropColorProperty =
 			DependencyProperty.Register(nameof(ActiveDropColor), typeof(Color), typeof(DropArea));
 		public static readonly DependencyProperty InactiveDropColorProperty =
-			DependencyProperty.Register(nameof(InactiveDropColor), typeof(Color), typeof(DropArea));
+			DependencyProperty.Register(nameof(InactiveDropColor), typeof(Color), typeof(DropArea), new PropertyMetadata(OnInactiveDropColorChanged));
 
 		public Color ActiveDropColor
 		{
@@ -23,19 +23,18 @@ namespace TypeTreeDiff
 		public Color InactiveDropColor
 		{
 			get { return (Color)GetValue(InactiveDropColorProperty); }
-			set
-			{
-				SetValue(InactiveDropColorProperty, value);
-				Area.Background = new SolidColorBrush(value);
-			}
+			set { SetValue(InactiveDropColorProperty, value); }
 		}
-
 
 		public DropArea()
 		{
 			InitializeComponent();
+		}
 
-			Area.Background = new SolidColorBrush(InactiveDropColor);
+		private static void OnInactiveDropColorChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+		{
+			DropArea dropArea = (DropArea)d;
+			dropArea.Area.Background = new SolidColorBrush((Color)e.NewValue);
 		}
 
 		// =================================

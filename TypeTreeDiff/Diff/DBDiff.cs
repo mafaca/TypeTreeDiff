@@ -19,6 +19,11 @@ namespace TypeTreeDiff
 			LeftVersion = left.Version;
 			RightVersion = right.Version;
 
+			Dictionary<int, TreeDump> leftTrees = new Dictionary<int, TreeDump>(left.TypeTrees.Count);
+			foreach (TreeDump leftTree in left.TypeTrees)
+			{
+				leftTrees.Add(leftTree.ClassID, leftTree);
+			}
 			Dictionary<int, TreeDump> rightTrees = new Dictionary<int, TreeDump>(right.TypeTrees.Count);
 			foreach (TreeDump rightTree in right.TypeTrees)
 			{
@@ -26,8 +31,9 @@ namespace TypeTreeDiff
 			}
 
 			List<TreeDiff> treeDiffs = new List<TreeDiff>();
-			foreach (TreeDump leftTree in left.TypeTrees)
+			for (int li = 0, ri = 0; li < left.TypeTrees.Count; li++)
 			{
+				TreeDump leftTree = left.TypeTrees[li];
 				if (rightTrees.TryGetValue(leftTree.ClassID, out TreeDump rightTree))
 				{
 					TreeDiff treeDiff = new TreeDiff(leftTree, rightTree);
@@ -36,11 +42,25 @@ namespace TypeTreeDiff
 				}
 				else
 				{
-					TreeDiff tree = new TreeDiff(leftTree, DiffStatus.Deleted);
-					treeDiffs.Add(tree);
+					TreeDiff treeDiff = new TreeDiff(leftTree, DiffStatus.Deleted);
+					treeDiffs.Add(treeDiff);
+				}
+
+				while (ri < right.TypeTrees.Count)
+				{
+					TreeDump tree = right.TypeTrees[ri++];
+					if (leftTrees.ContainsKey(tree.ClassID))
+					{
+						break;
+					}
+					else
+					{
+						TreeDiff treeDiff = new TreeDiff(tree, DiffStatus.Added);
+						treeDiffs.Add(treeDiff);
+						rightTrees.Remove(tree.ClassID);
+					}
 				}
 			}
-#warning TODO: combine
 			foreach (TreeDump rightTree in rightTrees.Values)
 			{
 				TreeDiff tree = new TreeDiff(rightTree, DiffStatus.Added);

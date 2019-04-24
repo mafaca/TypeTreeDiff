@@ -87,7 +87,9 @@ namespace TypeTreeDiff
 		private void OnDumpDropped()
 		{
 			LeftDump.HideDragAndDrop();
+			LeftDump.ShowDumpView();
 			RightDump.HideDragAndDrop();
+			RightDump.ShowDumpView();
 		}
 
 		private void OnDumpCreated()
@@ -150,9 +152,7 @@ namespace TypeTreeDiff
 
 		private void OnDumpScrollChanged(DumpControl dump, double offset)
 		{
-			Decorator border = (Decorator)VisualTreeHelper.GetChild(dump.DumpListView, 0);
-			ScrollViewer scrollViewer = (ScrollViewer)border.Child;
-			scrollViewer.ScrollToVerticalOffset(offset);
+			dump.SetDumpScrollPosition(offset);
 		}
 
 		private void OnTypeTreeBackClicked()
@@ -168,9 +168,7 @@ namespace TypeTreeDiff
 		
 		private void OnTypeTreeScrollChanged(DumpControl dump, double offset)
 		{
-			Decorator border = (Decorator)VisualTreeHelper.GetChild(dump.TypeTreeListBox, 0);
-			ScrollViewer scrollViewer = (ScrollViewer)border.Child;
-			scrollViewer.ScrollToVerticalOffset(offset);
+			dump.SetTypeTreeScrollPosition(offset);
 		}
 
 		// =================================
