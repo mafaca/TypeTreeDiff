@@ -98,8 +98,8 @@ namespace TypeTreeDiff
 				IEnumerable<TreeNodeDiff> extraLeftChildren = Enumerable.Repeat(extraElement, extraLeft);
 				IEnumerable<TreeNodeDiff> extraRightChildren = Enumerable.Repeat(extraElement, extraRight);
 
-				LeftChildren = left.Children.Select(t => new TreeNodeDiff(t, true)).Concat(extraLeftChildren).ToArray();
-				RightChildren = right.Children.Select(t => new TreeNodeDiff(t, false)).Concat(extraRightChildren).ToArray();
+				LeftChildren = left.Children.Select(t => new TreeNodeDiff(t, false)).Concat(extraLeftChildren).ToArray();
+				RightChildren = right.Children.Select(t => new TreeNodeDiff(t, true)).Concat(extraRightChildren).ToArray();
 				DeepStatus = DiffStatus.Changed;
 			}
 		}
