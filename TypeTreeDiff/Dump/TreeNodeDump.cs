@@ -229,7 +229,7 @@ namespace TypeTreeDiff
 						TreeNodeDump array = children[0];
 						if (array.Children.Count != 2)
 						{
-							throw new Exception($"String's array node has {array.Children.Count} children but expected 2");
+							return type;
 						}
 						if (array.Type != "Array")
 						{
