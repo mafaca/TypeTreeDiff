@@ -81,6 +81,67 @@ namespace TypeTreeDiff
 				case "UInt64":
 					return "ulong";
 
+				case "ColorRGBA":
+					{
+						if (children.Count == 1)
+						{
+							TreeNodeDump rgba = children[0];
+							if (rgba.Type != "unsigned int")
+							{
+								throw new Exception($"ColorRGBA's data node type {rgba.Name} doesn't match expected value 'unsigned int'");
+							}
+							if (rgba.Name != "rgba")
+							{
+								throw new Exception($"ColorRGBA's data node name {rgba.Name} doesn't match expected value 'rgba'");
+							}
+							return "ColorRGBA32";
+						}
+						else if (children.Count == 4)
+						{
+							TreeNodeDump r = children[0];
+							TreeNodeDump g = children[1];
+							TreeNodeDump b = children[2];
+							TreeNodeDump a = children[3];
+							if (r.Type != "float")
+							{
+								throw new Exception($"ColorRGBA's R color node type {r.Name} doesn't match expected value 'float'");
+							}
+							if (g.Type != "float")
+							{
+								throw new Exception($"ColorRGBA's G color node type {g.Name} doesn't match expected value 'float'");
+							}
+							if (b.Type != "float")
+							{
+								throw new Exception($"ColorRGBA's B color node type {b.Name} doesn't match expected value 'float'");
+							}
+							if (a.Type != "float")
+							{
+								throw new Exception($"ColorRGBA's A color node type {a.Name} doesn't match expected value 'float'");
+							}
+							if (r.Name != "r")
+							{
+								throw new Exception($"ColorRGBA's R color node name {r.Name} doesn't match expected value 'r'");
+							}
+							if (g.Name != "g")
+							{
+								throw new Exception($"ColorRGBA's R color node name {g.Name} doesn't match expected value 'g'");
+							}
+							if (b.Name != "b")
+							{
+								throw new Exception($"ColorRGBA's R color node name {b.Name} doesn't match expected value 'b'");
+							}
+							if (a.Name != "a")
+							{
+								throw new Exception($"ColorRGBA's R color node name {a.Name} doesn't match expected value 'a'");
+							}
+							return "ColorRGBAf";
+						}
+						else
+						{
+							throw new Exception($"ColorRGBA has {children.Count} children but expected 1 or 4");
+						}
+					}
+
 				case "vector":
 					{
 						if (children.Count != 1)
@@ -345,6 +406,7 @@ namespace TypeTreeDiff
 				case "GUID":
 				case "Hash128":
 				case "BitField":
+				case "ColorRGBA":
 					return true;
 
 				default:
@@ -376,6 +438,7 @@ namespace TypeTreeDiff
 				case "GUID":
 				case "Hash128":
 				case "BitField":
+				case "ColorRGBA":
 					return new TreeNodeDump[0];
 
 				case null:
