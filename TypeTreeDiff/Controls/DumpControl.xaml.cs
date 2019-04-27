@@ -325,6 +325,7 @@ namespace TypeTreeDiff
 
 			// nodes
 			CopyTypeTreeNode(typeTree, 0, sb);
+			sb.Length -= Environment.NewLine.Length;
 			return sb.ToString();
 		}
 
@@ -332,9 +333,10 @@ namespace TypeTreeDiff
 		{
 			sb.Append('\t', indent).Append(node.Type).Append(' ').Append(node.Name);
 			// Nice bug, C#. Look at this beautiful piece of... code
-			sb.AppendFormat(" // ByteSize{0}{1:x}{2}, Index{3}{4:x}{5}, IsArray{{{6}}}, MetaFlag{7}{8:x}{9}",
+			sb.AppendFormat(" // ByteSize{0}{1:x}{2}, Index{3}{4:x}{5}, Version{6}{7:x}{8}, IsArray{{{9}}}, MetaFlag{10}{11:x}{12}",
 					"{", unchecked((uint)node.ByteSize), "}",
 					"{", node.Index, "}",
+					"{", node.Version, "}",
 					node.IsArray ? 1 : 0,
 					"{", node.MetaFlag, "}").AppendLine();
 			foreach (TreeNodeDump child in node.Children)
