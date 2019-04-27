@@ -15,15 +15,16 @@
 				<RowDefinition Height="auto"/>
 			</Grid.RowDefinitions>
 
-			<ListView Name="DumpListView" Grid.Row="0" SelectionMode="Single"
+			<ListView Name="DumpListView" Grid.Row="0" SelectionMode="Single" Focusable="False"
 					  SelectionChanged="OnDumpSelectionChanged"
+					  KeyDown="OnDumpListViewKeyDown"
 					  GridViewColumnHeader.Click="OnDumpHeaderClicked"
 					  ScrollViewer.ScrollChanged="OnDumpScrollChanged">
 				<ListView.Resources>
 					<Style TargetType="ListViewItem">
 						<EventSetter Event="MouseDoubleClick" Handler="OnDumpItemDoubleClicked" />
 					</Style>
-				</ListView.Resources>				
+				</ListView.Resources>
 				<ListView.View>
 					<GridView>
 						<GridViewColumn x:Name="DumpIDHeader" Header="ID" Width="80" DisplayMemberBinding="{Binding ID}" />
@@ -32,7 +33,8 @@
 				</ListView.View>
 			</ListView>
 
-			<Grid Name="TypeTreeArea" Visibility="Hidden">
+			<Grid Name="TypeTreeArea" Visibility="Hidden"
+				  KeyDown="OnTypeTreeAreaKeyDown">
 				<Grid.RowDefinitions>
 					<RowDefinition Height="auto"/>
 					<RowDefinition Height="*"/>
@@ -104,7 +106,7 @@
 			</StackPanel>
 		</Grid>
 
-		<control:DropArea x:Name="DropArea" ActiveDropColor="Gainsboro" InactiveDropColor="#FFBDBCBC"/>
+		<control:DropArea x:Name="DropArea" ActiveDropColor="Gainsboro" InactiveDropColor="#FFBDBCBC" Visibility="Hidden"/>
 	</Grid>
 	
 </UserControl>

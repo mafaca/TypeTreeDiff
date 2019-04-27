@@ -462,6 +462,15 @@ namespace TypeTreeDiff
 			}
 		}
 
+		private void OnDumpListViewKeyDown(object sender, KeyEventArgs e)
+		{
+			if (e.Key == Key.Enter)
+			{
+				TreeInfo info = (TreeInfo)DumpListView.Items[DumpListView.SelectedIndex];
+				EventDumpTypeTreesSelected?.Invoke(info.ID);
+			}
+		}
+
 		private void OnDumpItemDoubleClicked(object sender, MouseButtonEventArgs e)
 		{
 			TreeInfo info = (TreeInfo)DumpListView.Items[DumpListView.SelectedIndex];
@@ -477,6 +486,14 @@ namespace TypeTreeDiff
 			if (e.VerticalChange != 0.0)
 			{
 				EventDumpScrollChanged?.Invoke(e.VerticalOffset);
+			}
+		}
+
+		private void OnTypeTreeAreaKeyDown(object sender, KeyEventArgs e)
+		{
+			if (e.Key == Key.Back)
+			{
+				EventTypeTreeBackClicked?.Invoke();
 			}
 		}
 

@@ -5,6 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
 using System.Windows.Media;
 
 namespace TypeTreeDiff
@@ -142,6 +143,7 @@ namespace TypeTreeDiff
 		{
 			LeftDump.ShowTypeTreeView(classID);
 			RightDump.ShowTypeTreeView(classID);
+			RightDump.TypeTreeListBox.Focus();
 		}
 		
 		private void OnDumpHeaderSizeChanged(DumpControl dest, DumpControl source)
@@ -159,6 +161,11 @@ namespace TypeTreeDiff
 		{
 			LeftDump.ShowDumpView();
 			RightDump.ShowDumpView();
+			ListViewItem listItem = (ListViewItem)RightDump.DumpListView.ItemContainerGenerator.ContainerFromIndex(RightDump.DumpListView.SelectedIndex);
+			if (listItem != null)
+			{
+				listItem.Focus();
+			}
 		}
 
 		private void OnTypeTreeSelectionChanged(DumpControl dump, int index)
