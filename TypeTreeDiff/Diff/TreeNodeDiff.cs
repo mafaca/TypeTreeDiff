@@ -36,7 +36,7 @@ namespace TypeTreeDiff
 			LeftChildren = status == DiffStatus.Added ? emptyChildren : children;
 			RightChildren = status == DiffStatus.Added ? children : emptyChildren;
 
-			Status = status;
+			Status = DeepStatus = status;
 		}
 
 		public TreeNodeDiff(TreeDump left, TreeDump right) :
@@ -54,7 +54,7 @@ namespace TypeTreeDiff
 			Name = string.Empty;
 			LeftType = RightType = string.Empty;
 			LeftChildren = RightChildren = new TreeNodeDiff[0];
-			Status = status;
+			Status = DeepStatus = status;
 		}
 
 		private TreeNodeDiff(TreeNodeDump left, TreeNodeDump right, bool forceMerge)
@@ -79,13 +79,14 @@ namespace TypeTreeDiff
 			RightVersion = right.Version;
 			LeftAlign = left.IsAlign;
 			RightAlign = right.IsAlign;
-			Status = (LeftVersion == RightVersion && LeftAlign == RightAlign) ? DiffStatus.Unchanged : DiffStatus.Changed;
+			Status = (LeftType == RightType && LeftVersion == RightVersion && LeftAlign == RightAlign) ?
+				DiffStatus.Unchanged : DiffStatus.Changed;
 
 			if (LeftType == RightType || forceMerge)
 			{
 				TreeNodeDiff[] children = CreateChildren(left, right);
 				LeftChildren = RightChildren = children;
-				Status = children.All(t => t.Status == DiffStatus.Unchanged) ? Status : DiffStatus.Changed;
+				DeepStatus = children.All(t => t.DeepStatus == DiffStatus.Unchanged) ? Status : DiffStatus.Changed;
 			}
 			else
 			{
@@ -99,7 +100,7 @@ namespace TypeTreeDiff
 
 				LeftChildren = left.Children.Select(t => new TreeNodeDiff(t, true)).Concat(extraLeftChildren).ToArray();
 				RightChildren = right.Children.Select(t => new TreeNodeDiff(t, false)).Concat(extraRightChildren).ToArray();
-				Status = DiffStatus.Changed;
+				DeepStatus = DiffStatus.Changed;
 			}
 		}
 
@@ -126,7 +127,7 @@ namespace TypeTreeDiff
 			LeftChildren = left ? children : new TreeNodeDiff[0];
 			RightChildren = left ? new TreeNodeDiff[0] : children;
 
-			Status = DiffStatus.Changed;
+			Status = DeepStatus = DiffStatus.Changed;
 		}
 
 		private static TreeNodeDiff[] CreateChildren(TreeNodeDump left, TreeNodeDump right)
@@ -226,5 +227,6 @@ namespace TypeTreeDiff
 		public IReadOnlyList<TreeNodeDiff> LeftChildren { get; }
 		public IReadOnlyList<TreeNodeDiff> RightChildren { get; }
 		public DiffStatus Status { get; }
+		public DiffStatus DeepStatus { get; }
 	}
 }

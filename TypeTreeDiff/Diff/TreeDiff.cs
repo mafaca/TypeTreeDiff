@@ -47,7 +47,7 @@ namespace TypeTreeDiff
 				else
 				{
 					Node = new TreeNodeDiff(left, right);
-					Status = (LeftClassName == RightClassName && LeftBaseName == RightBaseName) ? Status = Node.Status : DiffStatus.Changed;
+					Status = (LeftClassName == RightClassName && LeftBaseName == RightBaseName) ? Node.DeepStatus : DiffStatus.Changed;
 				}
 			}
 			else
