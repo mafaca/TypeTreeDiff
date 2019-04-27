@@ -46,6 +46,7 @@ namespace TypeTreeDiff
 			dest.Name = Name;
 			dest.ByteSize = ByteSize;
 			dest.Index = Index;
+			dest.Version = Version;
 			dest.IsArray = IsArray;
 			dest.MetaFlag = MetaFlag;
 
@@ -439,6 +440,8 @@ namespace TypeTreeDiff
 			reader.FindValidateLineWord(",");
 			Index = ReadHexIntParameter(reader, "Index");
 			reader.FindValidateLineWord(",");
+			Version = ReadHexIntParameter(reader, "Version");
+			reader.FindValidateLineWord(",");
 			IsArray = ReadBoolParameter(reader, "IsArray");
 			reader.FindValidateLineWord(",");
 			MetaFlag = unchecked((uint)ReadHexIntParameter(reader, "MetaFlag"));
@@ -484,6 +487,7 @@ namespace TypeTreeDiff
 		public string Name { get; private set; }
 		public int ByteSize { get; private set; }
 		public int Index { get; private set; }
+		public int Version { get; private set; }
 		public bool IsArray { get; private set; }
 		public uint MetaFlag { get; private set; }
 		public bool IsAlign => (MetaFlag & 0x4000) != 0;

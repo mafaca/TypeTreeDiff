@@ -35,7 +35,7 @@ namespace TypeTreeDiff
 		{
 			public override string ToString()
 			{
-				return new string(' ', Indent * 6) + Type + " " + Name + (Align ? " (align)" : string.Empty);
+				return new string(' ', Indent * 6) + Type + (Version > 1 ? ":" + Version : string.Empty) + " " + Name + (Align ? " (align)" : string.Empty);
 			}
 
 			public static TreeNodeInfo Empty { get; } = new TreeNodeInfo() { Type = string.Empty, Name = string.Empty };
@@ -43,6 +43,7 @@ namespace TypeTreeDiff
 			public int Indent { get; set; }
 			public string Type { get; set; }
 			public string Name { get; set; }
+			public int Version { get; set; }
 			public bool Align { get; set; }
 			public DiffStatus Status { get; set; }
 		}
@@ -213,6 +214,7 @@ namespace TypeTreeDiff
 			info.Indent = indent;
 			info.Type = DiffPosition == Position.Left ? node.LeftType : node.RightType;
 			info.Name = node.Name;
+			info.Version = DiffPosition == Position.Left ? node.LeftVersion : node.RightVersion;
 			info.Align = DiffPosition == Position.Left ? node.LeftAlign : node.RightAlign;
 			info.Status = node.Status;
 			items.Add(info);

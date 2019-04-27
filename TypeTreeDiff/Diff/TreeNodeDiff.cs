@@ -23,6 +23,9 @@ namespace TypeTreeDiff
 			LeftType = status == DiffStatus.Added ? string.Empty : type;
 			RightType = status == DiffStatus.Added ? type : string.Empty;
 
+			LeftVersion = status == DiffStatus.Added ? 0 : node.Version;
+			RightVersion = status == DiffStatus.Added ? node.Version : 0;
+
 			LeftAlign = status == DiffStatus.Added ? false : node.IsAlign;
 			RightAlign = status == DiffStatus.Added ? node.IsAlign : false;
 
@@ -72,9 +75,11 @@ namespace TypeTreeDiff
 			Name = left.Name ?? throw new ArgumentNullException(nameof(left.Name));
 			LeftType = left.Type ?? throw new ArgumentNullException(nameof(left.Type));
 			RightType = right.Type ?? throw new ArgumentNullException(nameof(left.Type));
+			LeftVersion = left.Version;
+			RightVersion = right.Version;
 			LeftAlign = left.IsAlign;
 			RightAlign = right.IsAlign;
-			Status = LeftAlign == RightAlign ? DiffStatus.Unchanged : DiffStatus.Changed;
+			Status = (LeftVersion == RightVersion && LeftAlign == RightAlign) ? DiffStatus.Unchanged : DiffStatus.Changed;
 
 			if (LeftType == RightType || forceMerge)
 			{
@@ -110,6 +115,9 @@ namespace TypeTreeDiff
 			string type = node.Type ?? throw new ArgumentNullException(nameof(node.Type));
 			LeftType = left ? string.Empty : type;
 			RightType = left ? type : string.Empty;
+
+			LeftVersion = left ? 0 : node.Version;
+			RightVersion = left ? node.Version : 0;
 
 			LeftAlign = left ? false : node.IsAlign;
 			RightAlign = left ? node.IsAlign : false;
@@ -211,6 +219,8 @@ namespace TypeTreeDiff
 		public string Name { get; }
 		public string LeftType { get; }
 		public string RightType { get; }
+		public int LeftVersion { get; }
+		public int RightVersion { get; }
 		public bool LeftAlign { get; }
 		public bool RightAlign { get; }
 		public IReadOnlyList<TreeNodeDiff> LeftChildren { get; }
