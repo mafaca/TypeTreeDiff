@@ -74,6 +74,10 @@ namespace TypeTreeDiff
 					return "short";
 				case "UInt16":
 					return "ushort";
+				case "SInt32":
+					return "int";
+				case "UInt32":
+					return "uint";
 				case "unsigned int":
 					return "uint";
 				case "SInt64":
@@ -86,7 +90,7 @@ namespace TypeTreeDiff
 						if (children.Count == 1)
 						{
 							TreeNodeDump rgba = children[0];
-							if (rgba.Type != "unsigned int")
+							if (ToOptimizedType(rgba) != "uint")
 							{
 								throw new Exception($"ColorRGBA's data node type {rgba.Name} doesn't match expected value 'unsigned int'");
 							}
@@ -164,9 +168,9 @@ namespace TypeTreeDiff
 						}
 
 						TreeNodeDump vectorSize = array.Children[0];
-						if (vectorSize.Type != "int")
+						if (ToOptimizedType(vectorSize) != "int")
 						{
-							throw new Exception($"Vector's size node type {vectorSize.Type} doesn't match expected value 'Array'");
+							throw new Exception($"Vector's size node type {vectorSize.Type} doesn't match expected value 'int'");
 						}
 						if (vectorSize.Name != "size")
 						{
@@ -204,9 +208,9 @@ namespace TypeTreeDiff
 						}
 
 						TreeNodeDump mapSize = array.Children[0];
-						if (mapSize.Type != "int")
+						if (ToOptimizedType(mapSize) != "int")
 						{
-							throw new Exception($"Map's size node type {mapSize.Type} doesn't match expected value 'Array'");
+							throw new Exception($"Map's size node type {mapSize.Type} doesn't match expected value 'int'");
 						}
 						if (mapSize.Name != "size")
 						{
@@ -263,7 +267,7 @@ namespace TypeTreeDiff
 						}
 
 						TreeNodeDump setSize = array.Children[0];
-						if (setSize.Type != "int")
+						if (ToOptimizedType(setSize) != "int")
 						{
 							throw new Exception($"Set's size node type {setSize.Type} doesn't match expected value 'int'");
 						}
@@ -303,7 +307,7 @@ namespace TypeTreeDiff
 						}
 
 						TreeNodeDump stringSize = array.Children[0];
-						if (stringSize.Type != "int")
+						if (ToOptimizedType(stringSize) != "int")
 						{
 							throw new Exception($"String's size node type {stringSize.Type} doesn't match expected value 'int'");
 						}
@@ -353,7 +357,7 @@ namespace TypeTreeDiff
 						}
 
 						TreeNodeDump dataSize = children[0];
-						if (dataSize.Type != "int")
+						if (ToOptimizedType(dataSize) != "int")
 						{
 							throw new Exception($"Typeless data's size node type {dataSize.Type} doesn't match expected value 'int'");
 						}
@@ -363,9 +367,9 @@ namespace TypeTreeDiff
 						}
 
 						TreeNodeDump dataValue = children[1];
-						if (dataValue.Type != "UInt8")
+						if (ToOptimizedType(dataValue) != "byte")
 						{
-							throw new Exception($"String's value node type {dataValue.Type} doesn't match expected value 'UInt8'");
+							throw new Exception($"String's value node type {dataValue.Type} doesn't match expected value 'byte'");
 						}
 						if (dataValue.Name != "data")
 						{
