@@ -395,6 +395,8 @@ namespace TypeTreeDiff
 				case "UInt16":
 				case "int":
 				case "unsigned int":
+				case "SInt32":
+				case "UInt32":
 				case "SInt64":
 				case "UInt64":
 				case "float":

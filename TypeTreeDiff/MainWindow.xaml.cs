@@ -1,11 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO;
-using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Input;
 using System.Windows.Media;
 
 namespace TypeTreeDiff
@@ -87,9 +84,11 @@ namespace TypeTreeDiff
 
 		private void OnDumpDropped()
 		{
+			m_treeSortPropery = null;
+
 			LeftDump.HideDragAndDrop();
-			LeftDump.ShowDumpView();
 			RightDump.HideDragAndDrop();
+			LeftDump.ShowDumpView();
 			RightDump.ShowDumpView();
 		}
 
